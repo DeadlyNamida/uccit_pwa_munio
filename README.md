@@ -2,6 +2,8 @@
 
 A Laravel-based project with a cleaner, more polished landing page design.
 
+Created by Britania Dunkley and Jonovi Gayle.
+
 ## What was updated
 
 This refresh focuses on the frontend presentation of the default landing page.
