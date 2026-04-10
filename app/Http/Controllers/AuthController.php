@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use App\Models\User;
 
 class AuthController extends Controller
 {
@@ -30,7 +30,9 @@ class AuthController extends Controller
 
         if (Auth::attempt($credentials, $remember)) {
             $request->session()->regenerate();
-            return redirect()->route('dashboard');
+
+            return redirect()->route('dashboard')
+                ->with('success', 'You are now logged in.');
         }
 
         return back()->withErrors([
@@ -53,10 +55,10 @@ class AuthController extends Controller
         ]);
 
         Auth::login($user);
-
         $request->session()->regenerate();
 
-        return redirect()->route('dashboard');
+        return redirect()->route('dashboard')
+            ->with('success', 'Account created successfully.');
     }
 
     public function dashboard()
